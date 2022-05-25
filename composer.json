@@ -1,6 +1,6 @@
 {
     "name": "tingo-gmbh/laravel-translatable",
-    "description": "Store translations items in your local database using Eloquent",
+    "description": "Store translation items in your local database using Eloquent",
     "type": "composer-plugin",
     "license": "MIT",
     "autoload": {
@@ -25,6 +25,9 @@
         "test": [
             "vendor/bin/phpunit"
         ]
+    },
+    "require": {
+        "php": ">=8.1"
     },
     "require-dev": {
         "orchestra/testbench": "^7.5",

@@ -1,6 +1,6 @@
 # Laravel Translatable
 
-Store translations items in your local database using Eloquent.
+Store translation items in your local database using Eloquent.
 
 ## Install
 
