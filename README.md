@@ -110,3 +110,11 @@ A locale must always be passed as an argument, otherwise nothing will be deleted
 ```php
 $entity->deleteTranslation('name', 'de');
 ```
+
+## Spatie
+There is very similar package made by Spatie.
+https://github.com/spatie/laravel-translatable
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
