@@ -1,6 +1,6 @@
 <?php
 
-namespace Tingo\LaravelTranslatable\Exceptions;
+namespace Tingo\Translatable\Exceptions;
 
 use Exception;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Tingo\LaravelTranslatable\Tests\Models;
+namespace Tingo\Translatable\Tests\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Tingo\LaravelTranslatable\Tests\Factories\EntityFactory;
-use Tingo\LaravelTranslatable\Translatable;
+use Tingo\Translatable\Tests\Factories\EntityFactory;
+use Tingo\Translatable\Translatable;
 
 class Entity extends Model
 {

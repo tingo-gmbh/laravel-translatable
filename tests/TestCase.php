@@ -1,10 +1,10 @@
 <?php
 
-namespace Tingo\LaravelTranslatable\Tests;
+namespace Tingo\Translatable\Tests;
 
 use Exception;
-use Tingo\LaravelTranslatable\LaravelTranslatableServiceProvider;
-use Tingo\LaravelTranslatable\Tests\Models\Entity;
+use Tingo\Translatable\TranslatableServiceProvider;
+use Tingo\Translatable\Tests\Models\Entity;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -24,7 +24,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app): array
     {
         return [
-            LaravelTranslatableServiceProvider::class,
+            TranslatableServiceProvider::class,
         ];
     }
 

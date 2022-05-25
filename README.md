@@ -1,4 +1,4 @@
-# Laravel Translatable
+# Eloquent Translatable
 
 Store translation items in your local database using Eloquent.
 
@@ -6,13 +6,12 @@ Store translation items in your local database using Eloquent.
 
 First install the latest version of our package.
 ```bash
-composer require tingo-gmbh/laravel-translatable
+composer require tingo-gmbh/eloquent-translatable
 ```
 
 Next we publish the migration and config files.
 ```bash
-php artisan vendor:publish --provider="Tingo\LaravelTranslatable\LaravelTranslatableServiceProvider" --tag="config"
-php artisan vendor:publish --provider="Tingo\LaravelTranslatable\LaravelTranslatableServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Tingo\Translatable\TranslatableServiceProvider" --tag="migrations"
 ```
 
 ## Usage
@@ -23,10 +22,10 @@ Add the Translatable trait to your Eloquent model and specify all translatable a
 ```php
 <?php
 
-namespace Tingo\LaravelTranslatable\Tests\Models;
+namespace Tingo\Translatable\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Tingo\LaravelTranslatable\Translatable;
+use Tingo\Translatable\Translatable;
 
 class Entity extends Model
 {

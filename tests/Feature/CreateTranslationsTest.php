@@ -1,12 +1,11 @@
 <?php
 
-namespace Tingo\LaravelTranslatable\Tests\Feature;
+namespace Tingo\Translatable\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\App;
-use Tingo\LaravelTranslatable\Exceptions\AttributeNotFoundException;
-use Tingo\LaravelTranslatable\Exceptions\AttributeNotTranslatableException;
-use Tingo\LaravelTranslatable\Tests\TestCase;
+use Tingo\Translatable\Exceptions\AttributeNotFoundException;
+use Tingo\Translatable\Exceptions\AttributeNotTranslatableException;
+use Tingo\Translatable\Tests\TestCase;
 
 
 class CreateTranslationsTest extends TestCase

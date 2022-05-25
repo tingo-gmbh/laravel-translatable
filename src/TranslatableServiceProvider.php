@@ -1,10 +1,10 @@
 <?php
 
-namespace Tingo\LaravelTranslatable;
+namespace Tingo\Translatable;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelTranslatableServiceProvider extends ServiceProvider
+class TranslatableServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -13,7 +13,7 @@ class LaravelTranslatableServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-translatable.php', 'laravel-translatable');
+        $this->mergeConfigFrom(__DIR__ . '/../config/translatable.php', 'translatable');
     }
 
     /**
@@ -27,7 +27,7 @@ class LaravelTranslatableServiceProvider extends ServiceProvider
 
             // publish config file.
             $this->publishes([
-                __DIR__ . '/../config/laravel-translatable.php' => config_path('laravel-translatable.php'),
+                __DIR__ . '/../config/translatable.php' => config_path('translatable.php'),
             ], 'config');
 
             // Publish migrations

@@ -1,10 +1,10 @@
 <?php
 
-namespace Tingo\LaravelTranslatable\Tests\Factories;
+namespace Tingo\Translatable\Tests\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
-use Tingo\LaravelTranslatable\Tests\Models\Entity;
+use Tingo\Translatable\Tests\Models\Entity;
 
 class EntityFactory extends Factory
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Tingo\LaravelTranslatable\Tests\Feature;
+namespace Tingo\Translatable\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\App;
-use Tingo\LaravelTranslatable\Tests\TestCase;
+use Tingo\Translatable\Tests\TestCase;
 
 class GetTranslationsTest extends TestCase
 {

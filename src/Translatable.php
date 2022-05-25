@@ -1,13 +1,13 @@
 <?php
 
-namespace Tingo\LaravelTranslatable;
+namespace Tingo\Translatable;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\App;
-use Tingo\LaravelTranslatable\Exceptions\AttributeNotFoundException;
-use Tingo\LaravelTranslatable\Exceptions\AttributeNotTranslatableException;
-use Tingo\LaravelTranslatable\Models\Translation;
+use Tingo\Translatable\Exceptions\AttributeNotFoundException;
+use Tingo\Translatable\Exceptions\AttributeNotTranslatableException;
+use Tingo\Translatable\Models\Translation;
 
 trait Translatable
 {
