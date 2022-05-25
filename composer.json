@@ -1,0 +1,38 @@
+{
+    "name": "tingo-gmbh/laravel-translatable",
+    "description": "Store translations items in your local database using Eloquent",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tingo\\LaravelTranslatable\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tingo\\LaravelTranslatable\\LaravelTranslatableServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Tingo GmbH",
+            "email": "development@tingo.ch"
+        }
+    ],
+    "scripts": {
+        "test": [
+            "vendor/bin/phpunit"
+        ]
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.5",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tingo\\LaravelTranslatable\\Tests\\": "tests"
+        }
+    }
+}
