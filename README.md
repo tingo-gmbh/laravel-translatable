@@ -5,12 +5,12 @@ Store translations items in your local database using Eloquent.
 ## Install
 
 First install the latest version of our package.
-```shell
+```bash
 composer require tingo-gmbh/laravel-translatable
 ```
 
 Next we publish the migration and config files.
-```shell
+```bash
 php artisan vendor:publish --provider="Tingo\LaravelTranslatable\LaravelTranslatableServiceProvider" --tag="config"
 php artisan vendor:publish --provider="Tingo\LaravelTranslatable\LaravelTranslatableServiceProvider" --tag="migrations"
 ```
@@ -18,9 +18,9 @@ php artisan vendor:publish --provider="Tingo\LaravelTranslatable\LaravelTranslat
 ## Usage
 
 ### Model
-Add the Translatable trait in your Eloquent model and specify the translatable attributes.
+Add the Translatable trait to your Eloquent model and specify all translatable attributes.
 
-```injectablephp
+```php
 <?php
 
 namespace Tingo\LaravelTranslatable\Tests\Models;
@@ -60,7 +60,7 @@ class Entity extends Model
 
 ### Create
 Create a new translation:
-```injectablephp
+```php
 $entity = Entity::create([
     'name' => 'Foo Entity',
     'category' => 'foo',
@@ -72,13 +72,13 @@ $entity->createTranslation('name', 'L\'entité foo', 'fr');
 
 ### Update
 A locale must always be passed as an argument, otherwise nothing will be updated.
-```injectablephp
+```php
 $entity->updateTranslation('name', 'Aktualisierte Foo Entität', 'de');
 ```
 
 ### Get
 Finally, can return your translations in your Resources or anywhere else in your code.
-```injectablephp
+```php
 echo $entity->getTranslation('name', 'de');
 // Foo Entität
 echo $entity->getTranslation('name', 'fr');
@@ -87,7 +87,7 @@ echo $entity->getTranslation('name', 'fr');
 
 ### Get all
 If you do not provide a language, the package will use the default locale of your Laravel app. This is especially useful when passing locales as a request header to your API end points.
-```injectablephp
+```php
 App::setLocale('it');
 $entity->createTranslation('name', 'Entità di Foo');
 echo $entity->getTranslation('name');
@@ -108,6 +108,6 @@ var_dump($entity->gatTranslations())
 
 ### Delete
 A locale must always be passed as an argument, otherwise nothing will be deleted.
-```injectablephp
+```php
 $entity->deleteTranslation('name', 'de');
 ```
