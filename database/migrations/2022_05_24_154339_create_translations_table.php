@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('translatable_type');
 
             $table->string('attribute', 50);
-            $table->string('value', 150);
+            $table->text('value');
             $table->string('locale', 10);
         });
     }
