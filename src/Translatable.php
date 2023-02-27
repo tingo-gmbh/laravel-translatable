@@ -22,9 +22,9 @@ trait Translatable
     }
 
     /**
-     * @param string $attribute
-     * @param string $value
-     * @param string $locale
+     * @param  string  $attribute
+     * @param  string  $value
+     * @param  string  $locale
      * @return Model
      * @throws AttributeNotFoundException
      * @throws AttributeNotTranslatableException
@@ -32,11 +32,11 @@ trait Translatable
     public function createTranslation(string $attribute, string $value, string $locale): Model
     {
         if (!$this->{$attribute}) {
-            throw new AttributeNotFoundException("Attribute $attribute was not found on model " . get_class($this));
+            throw new AttributeNotFoundException("Attribute $attribute was not found on model ".get_class($this));
         }
 
         if (!$this->translatable) {
-            throw new AttributeNotFoundException("Array translatable must be defined in " . get_class($this));
+            throw new AttributeNotFoundException("Array translatable must be defined in ".get_class($this));
         }
 
         if (!in_array($attribute, $this->translatable)) {
@@ -53,11 +53,12 @@ trait Translatable
     /**
      * Get translation of a specific attribute.
      *
-     * @param string $attribute
-     * @param string|null $locale
+     * @param  string  $attribute
+     * @param  string|null  $locale
+     * @param  bool  $refetch
      * @return string|null
      */
-    public function getTranslation(string $attribute, string $locale = null): ?string
+    public function getTranslation(string $attribute, string $locale = null, bool $refetch = true): ?string
     {
         if (!$this->{$attribute}) {
             return null;
@@ -68,7 +69,16 @@ trait Translatable
         }
 
         $locale = $locale ?: App::currentLocale();
-        $translation = $this->fresh()->translations()->where('attribute', $attribute)->where('locale', $locale)->orderBy('created_at', 'desc')->first();
+        $translation = $refetch
+            ? $this->fresh()
+                ->translations()
+                ->where('attribute', $attribute)
+                ->where('locale', $locale)
+                ->orderBy(
+                    'created_at',
+                    'desc'
+                )->first()
+            : $this->translations->first(fn($t) => $t->attribute === $attribute && $t->locale === $locale);
 
         if (!$translation) {
             return $this->{$attribute};
@@ -87,7 +97,10 @@ trait Translatable
         $translations = [];
         foreach ($this->translatable as $attribute) {
             $translations[$attribute] = ['default' => $this->{$attribute}];
-            foreach ($this->fresh()->translations()->where('attribute', $attribute)->orderBy('created_at')->get() as $translation) {
+            foreach (
+                $this->fresh()->translations()->where('attribute', $attribute)->orderBy('created_at')->get(
+                ) as $translation
+            ) {
                 $translations[$attribute][$translation->locale] = $translation->value;
             }
         }
@@ -97,14 +110,17 @@ trait Translatable
     /**
      * Update an existing translation.
      *
-     * @param string $attribute
-     * @param string $value
-     * @param string $locale
+     * @param  string  $attribute
+     * @param  string  $value
+     * @param  string  $locale
      * @return bool
      */
     public function updateTranslation(string $attribute, string $value, string $locale): bool
     {
-        $translation = $this->translations()->where('attribute', $attribute)->where('locale', $locale)->orderBy('created_at', 'desc')->first();
+        $translation = $this->translations()->where('attribute', $attribute)->where('locale', $locale)->orderBy(
+            'created_at',
+            'desc'
+        )->first();
         if (!$translation) {
             return false;
         }
@@ -117,8 +133,8 @@ trait Translatable
     /**
      * Delete translation.
      *
-     * @param string $attribute
-     * @param string $locale
+     * @param  string  $attribute
+     * @param  string  $locale
      * @return bool
      */
     public function deleteTranslation(string $attribute, string $locale): bool
