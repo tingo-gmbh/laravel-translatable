@@ -22,6 +22,26 @@ trait Translatable
     }
 
     /**
+     * Check if a translation exists.
+     *
+     * @param  string  $attribute
+     * @param  string  $locale
+     * @return bool
+     */
+    public function translationExists(string $attribute, string $locale): bool
+    {
+        if (!$this->{$attribute}) {
+            return false;
+        }
+
+        if (!$this->translatable) {
+            return false;
+        }
+
+        return $this->translations()->where('attribute', $attribute)->where('locale', $locale)->exists();
+    }
+
+    /**
      * @param  string  $attribute
      * @param  string  $value
      * @param  string  $locale
