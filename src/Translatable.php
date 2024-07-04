@@ -168,4 +168,58 @@ trait Translatable
 
         return true;
     }
+
+    /**
+     * Sync translations.
+     *
+     * @param  Model  $model
+     * @param  array  $translations
+     * @return void
+     */
+    public function syncTranslations(Model $model, array $translations): void
+    {
+        if (count($translations) === 0) {
+            $model->translations()->delete();
+            return;
+        }
+
+        // Delete missing translations.
+        foreach ($model->translations->pluck('attribute')->unique() as $attribute) {
+            if (!collect($translations)->pluck('attribute')->contains($attribute)) {
+                $model->translations()
+                    ->where('attribute', $attribute)
+                    ->delete();
+            }
+        }
+
+        foreach (collect($translations)->pluck('attribute')->unique() as $attribute) {
+            $existing = $model->translations()->where('attribute', $attribute)->get();
+
+            $createdIds = collect();
+            foreach (collect($translations)->filter(fn($t) => $t['attribute'] === $attribute) as $translation) {
+                if ($existing->pluck('locale')->contains($translation['locale'])) {
+                    $t = $model->translations()
+                        ->where('attribute', $attribute)
+                        ->where('locale', $translation['locale'])
+                        ->first();
+                    $t->update(['value' => $translation['value']]);
+                } else {
+                    $t = $model->translations()->create([
+                        'attribute' => $attribute,
+                        'locale' => $translation['locale'],
+                        'value' => $translation['value'],
+                    ]);
+                }
+                $createdIds[] = $t->id;
+            }
+
+            foreach ($existing->pluck('id') as $id) {
+                if (!$createdIds->contains($id)) {
+                    $model->translations()
+                        ->where('id', $id)
+                        ->delete();
+                }
+            }
+        }
+    }
 }
